@@ -20,54 +20,54 @@ This frontend application is designed to work with a separate backend API that h
 
 \`\`\`
 front/
-├── app/                          # Next.js App Router
-│   ├── (auth)/                   # Auth group routes
-│   │   ├── login/
-│   │   └── register/
-│   ├── (product)/                # Product group routes
-│   │   └── [slug]/               # Dynamic product detail page
-│   ├── cart/                     # Shopping cart page
-│   ├── checkout/                 # Checkout flow
-│   ├── dashboard/                # User dashboard
-│   │   ├── orders/               # User orders
-│   │   └── admin/                # Admin panel (orders & payments)
-│   ├── layout.tsx                # Root layout
-│   ├── page.tsx                  # Landing page (product list)
-│   └── globals.css               # Global styles
-├── components/                   # Reusable components
-│   ├── ui/                       # shadcn/ui components
-│   ├── layout/                   # Layout components (Header, Footer, etc.)
-│   ├── product/                  # Product-related components
-│   ├── cart/                     # Cart components
-│   └── admin/                    # Admin components
-├── lib/                          # Utility functions
-│   ├── api.ts                    # API client & interceptors
-│   ├── auth.ts                   # Auth utilities
-│   └── utils.ts                  # Helper functions
-├── store/                        # Redux store
-│   ├── slices/                   # Redux slices
-│   │   ├── authSlice.ts          # Authentication state
-│   │   ├── cartSlice.ts          # Shopping cart state
-│   │   ├── productSlice.ts       # Product state
-│   │   └── orderSlice.ts         # Order state
-│   └── index.ts                  # Store configuration
-├── providers/                    # React providers
-│   ├── index.tsx                 # Main provider wrapper
-│   └── state-provider.tsx        # Redux provider
-├── types/                        # TypeScript type definitions
-│   ├── product.ts
-│   ├── cart.ts
-│   ├── order.ts
-│   └── user.ts
-├── hooks/                        # Custom React hooks
-│   ├── use-auth.ts
-│   ├── use-cart.ts
-│   └── use-toast.ts
-└── styles/                       # SASS stylesheets
-    ├── abstracts/                # Variables, mixins, functions
-    ├── components/               # Component-specific styles
-    ├── layout/                   # Layout styles
-    └── pages/                    # Page-specific styles
+├── app/ # Next.js App Router
+│ ├── (auth)/ # Auth group routes
+│ │ ├── login/
+│ │ └── register/
+│ ├── (product)/ # Product group routes
+│ │ └── [slug]/ # Dynamic product detail page
+│ ├── cart/ # Shopping cart page
+│ ├── checkout/ # Checkout flow
+│ ├── dashboard/ # User dashboard
+│ │ ├── orders/ # User orders
+│ │ └── admin/ # Admin panel (orders & payments)
+│ ├── layout.tsx # Root layout
+│ ├── page.tsx # Landing page (product list)
+│ └── globals.css # Global styles
+├── components/ # Reusable components
+│ ├── ui/ # shadcn/ui components
+│ ├── layout/ # Layout components (Header, Footer, etc.)
+│ ├── product/ # Product-related components
+│ ├── cart/ # Cart components
+│ └── admin/ # Admin components
+├── lib/ # Utility functions
+│ ├── api.ts # API client & interceptors
+│ ├── auth.ts # Auth utilities
+│ └── utils.ts # Helper functions
+├── store/ # Redux store
+│ ├── slices/ # Redux slices
+│ │ ├── authSlice.ts # Authentication state
+│ │ ├── cartSlice.ts # Shopping cart state
+│ │ ├── productSlice.ts # Product state
+│ │ └── orderSlice.ts # Order state
+│ └── index.ts # Store configuration
+├── providers/ # React providers
+│ ├── index.tsx # Main provider wrapper
+│ └── state-provider.tsx # Redux provider
+├── types/ # TypeScript type definitions
+│ ├── product.ts
+│ ├── cart.ts
+│ ├── order.ts
+│ └── user.ts
+├── hooks/ # Custom React hooks
+│ ├── use-auth.ts
+│ ├── use-cart.ts
+│ └── use-toast.ts
+└── styles/ # SASS stylesheets
+├── abstracts/ # Variables, mixins, functions
+├── components/ # Component-specific styles
+├── layout/ # Layout styles
+└── pages/ # Page-specific styles
 \`\`\`
 
 ## 🚀 Features
@@ -75,18 +75,21 @@ front/
 ### Public Features
 
 #### 1. **Landing Page** (`/`)
+
 - Display paginated product list fetched from backend
 - Real-time search functionality to filter products
 - Responsive grid layout with minimalist design
 - Product cards with image, name, price, and quick actions
 
 #### 2. **Product Detail Page** (`/product/[slug]`)
+
 - Minimalist product showcase with high-quality images
 - Detailed product description and specifications
 - "Add to Cart" functionality
 - Related products section
 
 #### 3. **Shopping Cart** (`/cart`)
+
 - View all items added to cart
 - Update quantities or remove items
 - Cart state persisted using Redux Persist (survives page reload)
@@ -96,6 +99,7 @@ front/
 ### Protected Features (Authentication Required)
 
 #### 4. **Authentication** (`/login`, `/register`)
+
 - JWT-based authentication
 - Login and registration forms
 - Token management (access + refresh tokens)
@@ -111,29 +115,32 @@ POST /auth/login
 **Response Format:**
 \`\`\`json
 {
-  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
-  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
-  "user": {
-    "id": "string",
-    "email": "string",
-    "name": "string",
-    "role": "user" | "admin"
-  }
+"accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+"refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+"user": {
+"id": "string",
+"email": "string",
+"name": "string",
+"role": "user" | "admin"
+}
 }
 \`\`\`
 
 #### 5. **Checkout Flow** (`/checkout`)
+
 - Payment method selection (Stripe)
 - Order summary and review
 - Stripe payment integration
 - Redirect to dashboard on success
 
 #### 6. **User Dashboard** (`/dashboard`)
+
 - View personal order history
 - Order details and status tracking
 - Account information management
 
 #### 7. **Admin Dashboard** (`/dashboard/admin`)
+
 - **Role-based access**: Admin only
 - View all orders from all users
 - Order management (status updates)
@@ -159,22 +166,23 @@ The shopping cart uses Redux Toolkit with persistence:
 \`\`\`typescript
 // Cart state structure
 {
-  items: [
-    {
-      productId: string,
-      slug: string,
-      name: string,
-      price: number,
-      quantity: number,
-      image: string
-    }
-  ],
-  totalItems: number,
-  totalPrice: number
+items: [
+{
+productId: string,
+slug: string,
+name: string,
+price: number,
+quantity: number,
+image: string
+}
+],
+totalItems: number,
+totalPrice: number
 }
 \`\`\`
 
 **Cart persistence:**
+
 - Stored in `localStorage` via `redux-persist`
 - Survives page reloads and browser restarts
 - Syncs across browser tabs
@@ -183,6 +191,7 @@ The shopping cart uses Redux Toolkit with persistence:
 ## 💳 Payment Integration
 
 **Stripe Integration:**
+
 - Payment method selection on checkout page
 - Secure Stripe Checkout Session
 - Server-side payment processing
@@ -196,27 +205,28 @@ The shopping cart uses Redux Toolkit with persistence:
 \`\`\`
 styles/
 ├── abstracts/
-│   ├── _variables.scss          # Color palette, spacing, typography
-│   ├── _mixins.scss             # Reusable mixins
-│   └── _functions.scss          # SASS functions
+│ ├── \_variables.scss # Color palette, spacing, typography
+│ ├── \_mixins.scss # Reusable mixins
+│ └── \_functions.scss # SASS functions
 ├── base/
-│   ├── _reset.scss              # CSS reset
-│   └── _typography.scss         # Typography base
+│ ├── \_reset.scss # CSS reset
+│ └── \_typography.scss # Typography base
 ├── components/
-│   ├── _button.scss
-│   ├── _card.scss
-│   └── _form.scss
+│ ├── \_button.scss
+│ ├── \_card.scss
+│ └── \_form.scss
 ├── layout/
-│   ├── _header.scss
-│   ├── _footer.scss
-│   └── _grid.scss
+│ ├── \_header.scss
+│ ├── \_footer.scss
+│ └── \_grid.scss
 └── pages/
-    ├── _home.scss
-    ├── _product.scss
-    └── _cart.scss
+├── \_home.scss
+├── \_product.scss
+└── \_cart.scss
 \`\`\`
 
 **Design Principles:**
+
 - Minimalist aesthetic
 - Mobile-first responsive design
 - Consistent spacing using 8px grid system
@@ -229,41 +239,42 @@ styles/
 
 \`\`\`typescript
 {
-  auth: {
-    user: User | null,
-    accessToken: string | null,
-    refreshToken: string | null,
-    isAuthenticated: boolean,
-    loading: boolean,
-    error: string | null
-  },
-  cart: {
-    items: CartItem[],
-    totalItems: number,
-    totalPrice: number
-  },
-  products: {
-    list: Product[],
-    currentProduct: Product | null,
-    pagination: {
-      page: number,
-      limit: number,
-      total: number
-    },
-    loading: boolean,
-    error: string | null
-  },
-  orders: {
-    userOrders: Order[],
-    allOrders: Order[], // Admin only
-    currentOrder: Order | null,
-    loading: boolean,
-    error: string | null
-  }
+auth: {
+user: User | null,
+accessToken: string | null,
+refreshToken: string | null,
+isAuthenticated: boolean,
+loading: boolean,
+error: string | null
+},
+cart: {
+items: CartItem[],
+totalItems: number,
+totalPrice: number
+},
+products: {
+list: Product[],
+currentProduct: Product | null,
+pagination: {
+page: number,
+limit: number,
+total: number
+},
+loading: boolean,
+error: string | null
+},
+orders: {
+userOrders: Order[],
+allOrders: Order[], // Admin only
+currentOrder: Order | null,
+loading: boolean,
+error: string | null
+}
 }
 \`\`\`
 
 **Persisted Slices:**
+
 - `auth` - User session and tokens
 - `cart` - Shopping cart items
 
@@ -285,30 +296,36 @@ const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL
 ### Key Endpoints
 
 \`\`\`
+
 # Products
-GET    /products              # Get paginated products
-GET    /products/:slug        # Get product by slug
-GET    /products/search?q=    # Search products
+
+GET /products # Get paginated products
+GET /products/:slug # Get product by slug
+GET /products/search?q= # Search products
 
 # Authentication
-POST   /auth/register         # Register new user
-POST   /auth/login            # Login user
-POST   /auth/refresh          # Refresh access token
-POST   /auth/logout           # Logout user
+
+POST /auth/register # Register new user
+POST /auth/login # Login user
+POST /auth/refresh # Refresh access token
+POST /auth/logout # Logout user
 
 # Cart & Orders
-POST   /orders                # Create order from cart
-GET    /orders                # Get user orders
-GET    /orders/:id            # Get order details
+
+POST /orders # Create order from cart
+GET /orders # Get user orders
+GET /orders/:id # Get order details
 
 # Admin
-GET    /admin/orders          # Get all orders (admin)
-PATCH  /admin/orders/:id      # Update order status (admin)
-GET    /admin/payments/:id    # Get payment details (admin)
+
+GET /admin/orders # Get all orders (admin)
+PATCH /admin/orders/:id # Update order status (admin)
+GET /admin/payments/:id # Get payment details (admin)
 
 # Payments
-POST   /payments/stripe       # Create Stripe checkout session
-POST   /payments/webhook      # Stripe webhook (backend)
+
+POST /payments/stripe # Create Stripe checkout session
+POST /payments/webhook # Stripe webhook (backend)
 \`\`\`
 
 ## 🚦 Getting Started
@@ -322,46 +339,62 @@ POST   /payments/webhook      # Stripe webhook (backend)
 ### Installation
 
 \`\`\`bash
+
 # Install dependencies
+
 npm install
 
 # Set up environment variables
+
 cp .env.example .env.local
 
 # Update .env.local with your values:
+
 # NEXT_PUBLIC_API_URL=your_backend_url
+
 # NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=your_stripe_key
+
 \`\`\`
 
 ### Development
 
 \`\`\`bash
+
 # Run development server
+
 npm run dev
 
 # Open http://localhost:3000
+
 \`\`\`
 
 ### Production Build
 
 \`\`\`bash
+
 # Build for production
+
 npm run build
 
 # Start production server
+
 npm start
 \`\`\`
 
 ## 📦 Environment Variables
 
 \`\`\`env
+
 # API Configuration
+
 NEXT_PUBLIC_API_URL=http://localhost:8000/api
 
 # Stripe
-NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_...
+
+NEXT*PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test*...
 
 # Optional: Analytics, monitoring, etc.
+
 \`\`\`
 
 ## 🧪 Code Quality
@@ -409,6 +442,7 @@ NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_...
 ## 🤝 Contributing
 
 When contributing, please:
+
 1. Follow the existing code structure and naming conventions
 2. Write TypeScript types for all new code
 3. Create SASS modules for component styles
@@ -418,7 +452,7 @@ When contributing, please:
 
 ## 📝 License
 
-[Your License Here]
+This project is [UNLICENSED](LICENSE).
 
 ## 👥 Team
 
